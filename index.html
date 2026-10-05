@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f5f2" />
+  <title>Smart Escape — Evacuation Route Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Smart Escape home"><span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 25V7h11l7 7v11H7Z"/><path d="M14 18h8m-4-4 4 4-4 4"/></svg></span><span>smart<span class="brand-accent">escape</span></span></a>
+      <div class="topbar-meta"><span class="live-dot"></span><span data-i="simActive">SIMULATION ACTIVE</span><span class="divider"></span><span class="dataset-name" id="headerBuilding">Northstar Learning Center</span></div>
+      <div class="top-actions"><button class="icon-button" id="helpBtn" title="How to use" aria-label="How to use">?</button><button class="lang-toggle" id="langToggle" aria-label="Switch language">বাংলা <span>↗</span></button></div>
+    </header>
+
+    <main>
+      <section class="intro"><div><p class="eyebrow"><span class="eyebrow-line"></span><span data-i="eyebrow">EMERGENCY ROUTE PLANNER</span></p><h1><span data-i="title">Every second has<br/>a safer way out.</span><span class="title-spark">✳</span></h1><p class="intro-copy" data-i="subtitle">Map your building, adjust conditions, and find the lowest-cost route to safety.</p></div><div class="intro-right"><div class="status-chip"><span class="pulse"></span><span data-i="frontend">FRONTEND SIMULATION</span></div><div class="clock-readout"><span data-i="scenario">SCENARIO</span><strong id="scenarioCount">01</strong></div></div></section>
+
+      <section class="workspace">
+        <div class="map-panel panel">
+          <div class="panel-heading"><div><div class="section-kicker"><span>01</span> / <span data-i="buildingMap">BUILDING MAP</span></div><h2 data-i="mapTitle">Your building, at a glance</h2></div><div class="map-tools"><button class="tool-button" id="fitBtn" title="Fit map to view"><span>⤢</span><span data-i="fit">Fit view</span></button><button class="tool-button" id="resetBtn"><span>↺</span><span data-i="reset">Reset</span></button></div></div>
+          <div class="map-viewport" id="mapViewport"><svg id="mapSvg" role="img" aria-label="Building evacuation map"></svg><div class="map-badge"><span class="live-dot"></span><span data-i="liveMap">LIVE MAP</span></div><div class="map-zoom"><button id="zoomIn" aria-label="Zoom in">+</button><span id="zoomLabel">100%</span><button id="zoomOut" aria-label="Zoom out">−</button></div></div>
+          <div class="map-footer"><div class="legend"><span><i class="legend-dot room"></i><span data-i="room">Room</span></span><span><i class="legend-dot junction"></i><span data-i="junction">Junction</span></span><span><i class="legend-dot exit"></i><span data-i="exit">Exit</span></span><span><i class="legend-line route"></i><span data-i="route">Best route</span></span><span><i class="legend-line blocked"></i><span data-i="blocked">Blocked</span></span></div><div class="map-coords" id="mapStats">08 LOCATIONS <span>·</span> 10 CORRIDORS</div></div>
+        </div>
+
+        <aside class="sidebar">
+          <section class="route-card panel"><div class="section-kicker"><span>02</span> / <span data-i="routePlan">ROUTE PLAN</span></div><div class="start-select"><label for="startSelect" data-i="startingPoint">STARTING POINT</label><div class="select-wrap"><span class="start-pin">⌖</span><select id="startSelect"></select><span class="select-chevron">⌄</span></div></div><div class="route-result" id="routeResult"></div><div class="route-foot"><span class="route-foot-dot"></span><span data-i="recalc">Route recalculates instantly</span></div></section>
+
+          <section class="hazard-card panel"><div class="section-kicker"><span>03</span> / <span data-i="conditions">CONDITIONS</span><span class="count-pill" id="hazardCount">0 ACTIVE</span></div><h2 data-i="conditionsTitle">Adjust conditions</h2><p class="muted" data-i="conditionsCopy">Toggle a location or corridor to simulate a hazard.</p><div class="hazard-tabs" role="tablist"><button class="hazard-tab active" data-tab="nodes" role="tab" data-i="locations">Locations</button><button class="hazard-tab" data-tab="edges" role="tab" data-i="corridors">Corridors</button><button class="hazard-tab" data-tab="exits" role="tab" data-i="exits">Exits</button></div><div class="hazard-list" id="hazardList"></div><div class="hazard-note"><span>ⓘ</span><span data-i="hazardHint">Hazards are simulated. Select any item to change its status.</span></div></section>
+        </aside>
+      </section>
+
+      <section class="bottom-row"><div class="upload-panel panel"><div class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 14v5h14v-5"/></svg></div><div class="upload-text"><strong data-i="customMap">Bring your own building</strong><span data-i="customCopy">Load a building.json file to explore a different layout.</span></div><label class="upload-button" for="fileInput"><span data-i="importJson">Import JSON</span><span>↑</span></label><input id="fileInput" type="file" accept=".json,application/json" hidden /></div><div class="safety-note"><span class="safety-icon">✳</span><p><strong data-i="education">Educational simulation only.</strong> <span data-i="safetyCopy">Not certified for real-world evacuation planning.</span></p></div></section>
+      <footer><span>SMART ESCAPE <span class="footer-dot">·</span> PRACTICE CHALLENGE</span><span id="footerBuilding">Northstar Learning Center</span><button id="downloadSample" class="text-button" data-i="sampleJson">Download sample JSON</button></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="helpModal" hidden><div class="help-modal panel"><button class="modal-close" id="closeHelp" aria-label="Close">×</button><div class="section-kicker">SMART ESCAPE / GUIDE</div><h2 data-i="helpTitle">Find a safe way through.</h2><p data-i="helpCopy">Choose a starting room, then toggle locations, corridors, or exits to model changing conditions. Your least-cost route updates as you make changes.</p><ol><li data-i="helpStep1">Pick an available starting location.</li><li data-i="helpStep2">Use the Conditions panel to change hazards.</li><li data-i="helpStep3">Reset to restore the building file's initial state.</li></ol><p class="help-disclaimer" data-i="helpDisclaimer">For education and practice only. Always follow official emergency procedures.</p></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
