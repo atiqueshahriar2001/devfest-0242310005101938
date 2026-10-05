@@ -4,10 +4,10 @@ Smart Escape is a frontend-only evacuation route simulator built for the AI DevF
 
 ## Identity and links
 
-- Name: add your full name before submission
-- Registration number: add your registration number before submission
-- Live site: add the public HTTPS deployment URL before submission
-- Repository: add the public GitHub repository URL before submission
+- Name: MD. Atique Shahriar
+- Registration number: 0242310005101938
+- Live site: https://devfest-0242310005101938-production.up.railway.app
+- Repository: https://github.com/atiqueshahriar2001/devfest-0242310005101938?tab=readme-ov-file
 
 ## Run locally
 
